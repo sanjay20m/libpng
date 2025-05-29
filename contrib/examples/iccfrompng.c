@@ -97,6 +97,11 @@ extract_one_file(const char *filename)
    {
       png_uint_32 proflen = 0;
       png_bytep profile = extract(fp, &proflen);
+<<<<<<< HEAD
+=======
+      
+      
+      fclose(fp);  
 
       if (profile != NULL && profile != no_profile)
       {
@@ -124,6 +129,7 @@ extract_one_file(const char *filename)
             of = fopen(output, "wb");
             if (of != NULL)
             {
+<<<<<<< HEAD
                if (fwrite(profile, proflen, 1, of) == 1 &&
                   fflush(of) == 0 &&
                   fclose(of) == 0)
@@ -140,6 +146,11 @@ extract_one_file(const char *filename)
                   if (remove(output))
                      fprintf(stderr, "%s: could not remove file\n", output);
                }
+
+               fwrite(profile, proflen, 1, of);
+               fclose(of);  
+               result = 1;
+ f3b281568 (Update iccfrompng.c)
             }
 
             else
