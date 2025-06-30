@@ -70,15 +70,15 @@ void png_read_filter_row_sub3_sse2(png_row_infop row_info, png_bytep row,
       row += 3;
       rb  -= 3;
    }
-   if (rb > 0) {
-      a = d; d = load3(row);
-      d = _mm_add_epi8(d, a);
-      store3(row, d);
-
-      row += 3;
-      rb  -= 3;
-   }
-   PNG_UNUSED(prev)
+if (rb == 1) {
+    png_bytep p = row;
+    p[0] = (png_byte)(p[0] + p[-3]);
+} else if (rb == 2) {
+    png_bytep p = row;
+    p[0] = (png_byte)(p[0] + p[-3]);
+    p[1] = (png_byte)(p[1] + p[-2]);
+}
+   PNG_UNUSED(prev);
 }
 
 void png_read_filter_row_sub4_sse2(png_row_infop row_info, png_bytep row,
