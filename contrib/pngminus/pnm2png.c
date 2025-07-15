@@ -540,6 +540,11 @@ while ((ret == '\n') || (ret == '\r') || (ret == ' '));
   /* read string */
   do
   {
+     while ((ret == '\n') || (ret == '\r') || (ret == ' '));
+
+  /* read string */
+  do
+  {
     ret = fgetc(pnm_file);
     if (ret == EOF) break;
 
@@ -560,7 +565,7 @@ while ((ret == '\n') || (ret == '\r') || (ret == ' '));
   }
   while ((ret != '\n') && (ret != '\r') && (ret != ' '));
 
-  token_buf[i] = '\0';  // TO NULL-TERMINATE
+  token_buf[i] = '\0';  //  TO NULL-TERMINATE
 
   return (i > 0) ? 1 : 0;
 }
